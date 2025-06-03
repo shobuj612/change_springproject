@@ -16,6 +16,9 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "buyer_id", nullable = false)
     private Buyer buyer;
+    
+    @Column(name="order_name",nullable=false)
+    private String order_name;
 
     @Column(name = "style_no")
     private String style_no;
@@ -51,6 +54,14 @@ public class Order {
 
     public void setBuyer(Buyer buyer) {
         this.buyer = buyer;
+    }
+    
+    public String getOrder_name() {
+    	return order_name;
+    }
+    
+    public void setOrder_name(String order_name) {
+    	this.order_name=order_name;
     }
 
     public String getStyle_no() {
