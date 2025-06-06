@@ -22,7 +22,7 @@ public ShippingReportService(DataSource ds) {
 	this.ds = ds;
 }
 public byte[] createShippingReport() throws Exception{
-	InputStream input=getClass().getResourceAsStream("reports/shiping_report.jrxml");
+	InputStream input=getClass().getResourceAsStream("/Reports/shiping_report.jrxml");
 	if(input==null) {
 		throw new RuntimeException("this file not found");
 	}

@@ -3,6 +3,9 @@ package com.sunshine.sunspring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sunshine.sunspring.model.DesignInfo;
 import com.sunshine.sunspring.repository.DesignInfoRepository;
+import com.sunshine.sunspring.service.DesignService;
 
 @RestController
 @RequestMapping("/design")
@@ -27,49 +31,34 @@ public class DesignInfoController {
 	// this the DI injection 
 	
 	@Autowired
-	
-	
-	
-	private DesignInfoRepository dr;
+	private DesignService dr;
 	
  // this is the method to getAll the design
 	
 	@GetMapping
-	
-	public List<DesignInfo> getAllDesing(){
-		
-		
-		return dr.findAll();
+	public ResponseEntity<List<DesignInfo>> getAllDesing(){
+		List<DesignInfo> design=dr.getAllDesing();
+		return ResponseEntity.ok().body(design);
 	}
-	
 	
 	// this is the method to update the design information
 	
 	
 	@PutMapping("/{id}")
+	public ResponseEntity<DesignInfo> updateDesign(@PathVariable Long id, @RequestBody DesignInfo dn) {
+		DesignInfo dd=dr.updateDesign(id, dn);
+		return ResponseEntity.status(HttpStatus.CREATED).body(dd);
 	
-	public DesignInfo updateDesign(@PathVariable Long id, @RequestBody DesignInfo dn) {
-		
-		
-		dn.setDesign_id(id);
-		
-		return dr.save(dn);
-		
-		
-		
 	}
 	
 	
 	// this is the method to postdesing in the database
 	
 	
-	
-	
 	@PostMapping
-	
-	public DesignInfo postDesign(@RequestBody DesignInfo dn) {
-		
-		return dr.save(dn);
+	public ResponseEntity<DesignInfo> postDesign(@RequestBody DesignInfo dn) {
+		DesignInfo dign=dr.postDesign(dn);
+		return ResponseEntity.status(HttpStatus.CREATED).body(dign);
 	}
 	
 	
@@ -78,10 +67,10 @@ public class DesignInfoController {
 	
 	
 	@DeleteMapping("/{id}")
-	
-	public void deleteDesign(@PathVariable Long id) {
+	public ResponseEntity<Void> deleteDesign(@PathVariable Long id) {
 		
-		dr.deleteById(id);
+		dr.deleteDesign(id);
+		return ResponseEntity.noContent().build();
 	}
 	
 	

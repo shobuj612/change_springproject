@@ -22,7 +22,7 @@ public WareHouseReportService(DataSource ds) {
 	this.ds = ds;
 }
 public byte[] createWirHouseReport() throws Exception{
-	InputStream input=getClass().getResourceAsStream("reports/wirehouse_report.jrxml");
+	InputStream input=getClass().getResourceAsStream("/Reports/warehouse_report.jrxml");
 	if(input==null) {
 		throw new RuntimeException("this file not found in this location");
 	}

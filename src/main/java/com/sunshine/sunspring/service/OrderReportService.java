@@ -26,7 +26,7 @@ public class OrderReportService {
 	
 	public byte[] orderReport() throws Exception {
 		
-		InputStream inputStream =getClass().getResourceAsStream("reports/order.jrxml");
+		InputStream inputStream =getClass().getResourceAsStream("/Reports/order_reports.jrxml");
 		
 		if(inputStream == null) {
 			

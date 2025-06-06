@@ -28,7 +28,7 @@ public class DesignReportService {
 	
  	public byte[] createDesignReport() throws Exception{
  		
- 		InputStream input=getClass().getResourceAsStream("reports/design_report.jrxml");
+ 		InputStream input=getClass().getResourceAsStream("/Reports/design_report.jrxml");
  		
  		if(input==null) {
  			

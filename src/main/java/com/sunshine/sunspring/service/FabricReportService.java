@@ -28,7 +28,7 @@ public class FabricReportService {
 	
 	public byte[] createFabricReport() throws Exception{
 		
-		InputStream input=getClass().getResourceAsStream("reports/fabric_report.jrxml");
+		InputStream input=getClass().getResourceAsStream("/Reports/fabric_report.jrxml");
 		
 		if(input==null) {
 			

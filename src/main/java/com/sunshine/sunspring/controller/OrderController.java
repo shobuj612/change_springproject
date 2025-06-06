@@ -1,8 +1,8 @@
 package com.sunshine.sunspring.controller;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.sunshine.sunspring.model.Order;
-import com.sunshine.sunspring.repository.OrderRepository;
+import com.sunshine.sunspring.service.OrderService;
 
 @RestController
 @RequestMapping("/orders")
@@ -24,43 +23,39 @@ public class OrderController {
 	// this is DI injection
 	
 	@Autowired
-	
-	private OrderRepository or;
+	private OrderService or;
 	
 	// this method to fetch all the row from the database
 	
 	@GetMapping
-	public List<Order> getAllOrder(){
-		
-		return or.findAll();
+	public ResponseEntity<List<Order>> getAllOrder(){
+		List<Order> order=or.getAllOrder();
+		return ResponseEntity.ok(order);
 	}
-	
 	
 	// this is method to update row by the id and put row therer
 	@PutMapping("/{id}")
-	public Order updateOrder(@PathVariable Long id , @RequestBody Order order) {
-		
-		order.setOrder_id(id);
-		
-		return or.save(order);
+	public ResponseEntity<Order> updateOrder(@PathVariable Long id , @RequestBody Order order) {
+		Order myOrder=or.updateOrder(id, order);
+		return new ResponseEntity<>(myOrder,HttpStatus.ACCEPTED);
 		
 	}
 	
 	// this is method to create order or post order to the database
 	
 	@PostMapping
-	
-	public Order postOrder(@RequestBody Order order) {
-		return or.save(order);
+	public ResponseEntity<Order> postOrder(@RequestBody Order order) {
+		Order myOrder=or.postOrder(order);
+		return ResponseEntity.status(HttpStatus.CREATED).body(myOrder);
+		
 	}
 	
 	// this is method to delete 
 	
 	@DeleteMapping("/{id}")
-	
-	public void deleteOrder(@PathVariable Long id) {
-		
-		or.deleteById(id);
+	public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
+		or.deleteOrder(id);
+		return ResponseEntity.noContent().build();
 	}
 
 }

@@ -22,7 +22,7 @@ public SewingReportService(DataSource ds) {
 	this.ds = ds;
 }
 public byte[] createSewingReportService() throws Exception{
-	InputStream input=getClass().getResourceAsStream("reports/sewing_report.jrxml");
+	InputStream input=getClass().getResourceAsStream("/Reports/sewing_report.jrxml");
 	if(input==null) {
 		throw new RuntimeException("this file not found in this resource");
 	}

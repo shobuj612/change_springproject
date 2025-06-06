@@ -29,7 +29,7 @@ public class CuttingReportService {
 	
 	public byte[] createCuttingReport() throws Exception{
 		
-		InputStream input =getClass().getResourceAsStream("reports/cutting_report.jrxml");
+		InputStream input =getClass().getResourceAsStream("/Reports/cutting_report.jrxml");
 		
 		if(input==null) {
 			

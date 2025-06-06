@@ -22,7 +22,7 @@ public QcReportService(DataSource ds) {
 	this.ds = ds;
 }
 public byte[] creteQcReportService() throws Exception{
-	InputStream input=getClass().getResourceAsStream("reports/qc_report.jrxml");
+	InputStream input=getClass().getResourceAsStream("/Reports/qc_report.jrxml");
 	if(input==null) {
 		throw new RuntimeException("this file not found");
 	}

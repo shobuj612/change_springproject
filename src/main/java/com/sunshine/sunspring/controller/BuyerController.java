@@ -3,10 +3,10 @@ package com.sunshine.sunspring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import com.sunshine.sunspring.model.Buyer;
-import com.sunshine.sunspring.repository.BuyerRepository;
+import com.sunshine.sunspring.service.BuyerService;
 
 @RestController
 @RequestMapping("/buyer")
@@ -14,30 +14,35 @@ import com.sunshine.sunspring.repository.BuyerRepository;
 public class BuyerController {
 
     @Autowired
-    private BuyerRepository br;
+    private BuyerService bs;
 
     // Get all buyers
     @GetMapping
-    public List<Buyer> getAllBuyer() {
-        return br.findAll();
+    public ResponseEntity<List<Buyer>> getAllBuyerByService() {
+        List<Buyer> buyers=bs.getAllBuyer();
+        return  ResponseEntity.ok(buyers);
     }
 
     // Update buyer by ID
     @PutMapping("/{id}")
-    public Buyer updateBuyer(@PathVariable Long id, @RequestBody Buyer buyer) {
-        buyer.setBuyerId(id); // Ensure the ID is set for update
-        return br.save(buyer);
+    public ResponseEntity<Buyer> updateBuyerByService(@PathVariable Long id, @RequestBody Buyer buyer) {
+        // Ensure the ID is set for update
+        Buyer myBuyer=bs.updateBuyer(id, buyer);
+        
+        return ResponseEntity.ok(myBuyer);
     }
 
     // Insert new buyer (ID generated automatically in model)
     @PostMapping
-    public Buyer postBuyer(@RequestBody Buyer buyer) {
-        return br.save(buyer);
+    public ResponseEntity<Buyer> postBuyerByService(@RequestBody Buyer buyer) {
+        	Buyer hiBuyer=bs.postBuyer(buyer);
+        	 return ResponseEntity.ok(hiBuyer);
     }
 
     // Delete buyer by ID
     @DeleteMapping("/{id}")
-    public void deleteBuyer(@PathVariable Long id) {
-        br.deleteById(id);
+    public ResponseEntity<Void> deleteBuyerByService(@PathVariable Long id) {
+        bs.deleteBuyer(id);
+        return ResponseEntity.noContent().build();
     }
 }

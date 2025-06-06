@@ -25,7 +25,7 @@ public class FinishinReportService {
 	
 	public byte[] createFinishingReport() throws Exception{
 		
-		InputStream input=getClass().getResourceAsStream("reports/finishing_report.jrxml");
+		InputStream input=getClass().getResourceAsStream("/Reports/finishing_report.jrxml");
 		
 		if(input==null) {
 			

@@ -25,7 +25,7 @@ public class MarchendisingReportService {
 	
        public byte[] createMarchendisingReport() throws Exception{
     	   
-    	   InputStream input=getClass().getResourceAsStream("reports/march_report.jrxml");
+    	   InputStream input=getClass().getResourceAsStream("/Reports/marchendising_report.jrxml");
     	   
     	   if (input==null) {
     		   

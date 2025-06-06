@@ -3,6 +3,7 @@ package com.sunshine.sunspring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sunshine.sunspring.model.Cutting;
 import com.sunshine.sunspring.repository.CuttingRepository;
+import com.sunshine.sunspring.service.CuttingService;
 
 @RestController
 @RequestMapping("/cut")
@@ -26,35 +28,23 @@ public class CuttingController {
 	
 	@Autowired
 	
-	private CuttingRepository cr;
+	private CuttingService cr;
 	
 	// this is the method to get all the Cutting information
 	
 	
 	@GetMapping
-    public List<Cutting> getAllCutting(){
-		
-		
-		return cr.findAll();
-		
-		
+    public ResponseEntity<List<Cutting>> getAllCuttingByService(){
+		List<Cutting> cuttings=cr.getAllCutting();
+		return ResponseEntity.ok(cuttings);	
 	}
 	
 	  // this is the method to update the Cutting in the database
 	
-	
-	
 	@PutMapping("/{id}")
-	
-	
-	public Cutting updateCutting(@PathVariable Long id , @RequestBody Cutting cut) {
-		
-		
-		cut.setCutting_id(id);
-		
-	return	cr.save(cut);
-	
-	
+	public ResponseEntity<Cutting> updateCutting(@PathVariable Long id , @RequestBody Cutting cut) {
+	Cutting ccut=cr.updateCutting(id, cut);
+	return ResponseEntity.ok(ccut);
 	
 	}
 	
@@ -62,23 +52,18 @@ public class CuttingController {
 	// this is the method to insert the cutting information in the dataase
 	
 	@PostMapping
-	
-	public Cutting postCutting(@RequestBody Cutting cut) {
-		
-		return cr.save(cut);
-		
-		
-		
-		
+	public ResponseEntity<Cutting> postCutting(@RequestBody Cutting cut) {
+		Cutting hiCut=cr.postCutting(cut);
+		return ResponseEntity.ok(hiCut);
 	}
-	
 	
 	// this is the method to delete the cutting information in the database
 	
 	@DeleteMapping("/{id}")
-	public void deleteCutting(@PathVariable Long id) {
+	public ResponseEntity<Void> deleteCutting(@PathVariable Long id) {
+		cr.deleteCutting(id);
+		return ResponseEntity.noContent().build();
 		
-		cr.deleteById(id);
 	}
 	
       }

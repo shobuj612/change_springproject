@@ -1,8 +1,8 @@
 package com.sunshine.sunspring.controller;
-
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,50 +12,35 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.sunshine.sunspring.model.Shipping;
-import com.sunshine.sunspring.repository.ShippingRepository;
-
+import com.sunshine.sunspring.service.ShippingService;
 @RestController
 @RequestMapping("/ship")
 @CrossOrigin(origins="http://localhost:4200")
 public class ShippingController {
-	
 	// this is the DI injection
-	
 	@Autowired
-	
-	private ShippingRepository sr;
-	
+	private ShippingService sr;
 	
 	@GetMapping
-	
-	public List<Shipping> getAllShipping(){
-		
-		
-		return sr.findAll();
+	public ResponseEntity<List<Shipping>> getAllShipping(){
+		List<Shipping> ship=sr.getAllShipping();
+		return new ResponseEntity<>(ship,HttpStatus.OK);
 	}
 	
-	
 	// this is the method to update something in the database
-	
 	@PutMapping("/{id}")
-	public Shipping updateShipping(@PathVariable Long id , @RequestBody Shipping ship) {
-		
-		
-		ship.setShipping_id(id);
-		
-		return sr.save(ship);
+	public ResponseEntity<Shipping> updateShipping(@PathVariable Long id , @RequestBody Shipping ship) {
+		Shipping shipping =sr.updateShipping(id, ship);
+		return new ResponseEntity<>(shipping,HttpStatus.ACCEPTED);
 	}
 
 	  // this is the method to post something in the database
 	
 	@PostMapping
-	
-	public Shipping postShipping(@RequestBody Shipping ship) {
-		
-		
-	return	sr.save(ship);
+	public ResponseEntity<Shipping> postShipping(@RequestBody Shipping ship) {
+		Shipping shipping=sr.postShipping(ship);
+	return	new ResponseEntity<>(shipping,HttpStatus.CREATED);
 	
 	}
 	
@@ -63,10 +48,8 @@ public class ShippingController {
 	
 	
 	@DeleteMapping("/{id}")
-	
-	public void deleteShipping(@PathVariable Long id) {
-		
-		
-		sr.deleteById(id);
+	public ResponseEntity<Void> deleteShipping(@PathVariable Long id) {
+		sr.deleteShipping(id);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }
