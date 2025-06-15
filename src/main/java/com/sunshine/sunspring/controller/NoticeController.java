@@ -4,25 +4,25 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.time.LocalDate;
+//import java.nio.file.StandardCopyOption;
+//import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
+//import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
-import org.springframework.format.annotation.DateTimeFormat;
+//import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.data.domain.Sort;
+//import org.springframework.data.domain.Sort;
 
 import com.sunshine.sunspring.model.Notice;
-import com.sunshine.sunspring.repository.NoticeRepository;
+//import com.sunshine.sunspring.repository.NoticeRepository;
 import com.sunshine.sunspring.service.NoticeService;
 
 @RestController
@@ -30,7 +30,7 @@ import com.sunshine.sunspring.service.NoticeService;
 @CrossOrigin( origins="http://localhost:4200")
 public class NoticeController {
 
-     @Autowired
+   
 	    private final NoticeService service;
 
 	    public NoticeController(NoticeService service) {
