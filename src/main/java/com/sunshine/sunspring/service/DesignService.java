@@ -21,6 +21,11 @@ public class DesignService {
 		return dr.findAll();
 	}
 	
+	//this is the method to find the last row from the database
+	
+	public DesignInfo lastDataByService() {
+		return dr.findLastDesign();
+	}
 	
 	// this is the method to update the design information
 	

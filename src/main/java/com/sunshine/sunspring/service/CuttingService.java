@@ -47,5 +47,8 @@ public class CuttingService {
 	public void deleteCutting(Long id) {
 		cr.deleteById(id);
 	}
-
+   // this is the method to find the last data from the table
+	public Cutting getLastCuttingByService() {
+		return cr.findLastCutting();
+	}
 }

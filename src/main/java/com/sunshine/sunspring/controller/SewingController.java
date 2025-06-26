@@ -53,4 +53,9 @@ public class SewingController {
 		sr.deleteSewing(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
+	// this is the method to find the last data from the database
+	@GetMapping("/last")
+	public ResponseEntity<Sewing> getLastSewingByController(){
+		return ResponseEntity.ok(sr.getLastSewingByService());
+	}
 }

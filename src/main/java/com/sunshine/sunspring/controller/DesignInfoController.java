@@ -22,7 +22,6 @@ import com.sunshine.sunspring.service.DesignService;
 
 @RestController
 @RequestMapping("/design")
-
 @CrossOrigin(origins = "http://localhost:4200")
 
 public class DesignInfoController {
@@ -39,6 +38,12 @@ public class DesignInfoController {
 	public ResponseEntity<List<DesignInfo>> getAllDesing(){
 		List<DesignInfo> design=dr.getAllDesing();
 		return ResponseEntity.ok().body(design);
+	}
+	
+	// this is the method to get the last row from the database
+	@GetMapping("/last")
+	public ResponseEntity<DesignInfo> lastData(){
+		return ResponseEntity.ok(dr.lastDataByService());
 	}
 	
 	// this is the method to update the design information

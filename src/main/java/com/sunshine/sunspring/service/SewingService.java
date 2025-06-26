@@ -40,4 +40,9 @@ public class SewingService {
 		
 		sr.deleteById(id);
 	}
+	// this is the method to find the last data from the database
+	
+	public Sewing getLastSewingByService() {
+		return sr.findLastSewing();
+	}
 }

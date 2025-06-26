@@ -40,5 +40,8 @@ public class FinishingService {
 		fr.deleteById(id);
 	}
 
-
+   // this is  the method to find the last data from the database
+	public Finishing getLastFinishingByService() {
+		return fr.findLastFinishing();
+	}
 }

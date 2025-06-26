@@ -50,5 +50,9 @@ public class FinishingController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		
 	}
-
+   // this is the method to find the last data from the database
+	@GetMapping("/last")
+	public ResponseEntity<Finishing> getLastFinishingByController(){
+		return ResponseEntity.ok(fr.getLastFinishingByService());
+	}
 }

@@ -64,7 +64,10 @@ public class FabricController {
 		return ResponseEntity.noContent().build();
 	}
 	
-	
+	@GetMapping("/last")
+	public ResponseEntity<FabricInfo> getLastFabricByService(){
+		return ResponseEntity.ok(fr.getLastFabricByService());
+	}
 	
 	
 }

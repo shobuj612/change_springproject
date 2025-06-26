@@ -51,4 +51,9 @@ public class WarehouseService {
 		
 		wr.deleteById(id);
 	}
+	
+	// this is the method to find the last datafrom the database
+	public Warehouse getLastWarehouseByService() {
+		return wr.findLastWareHouse()
+;	}
 }

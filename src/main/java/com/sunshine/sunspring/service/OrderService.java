@@ -41,4 +41,9 @@ public class OrderService {
 	public void deleteOrder(Long id) {
 		or.deleteById(id);
 	}
+	
+	// this is the method to find the last data from the database
+	public Order getLastOrderByService() {
+		return or.findLastOrder();
+	}
 }

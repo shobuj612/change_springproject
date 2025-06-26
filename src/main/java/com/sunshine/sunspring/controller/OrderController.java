@@ -57,5 +57,9 @@ public class OrderController {
 		or.deleteOrder(id);
 		return ResponseEntity.noContent().build();
 	}
-
+  // this is the method to find the last data from the database
+	@GetMapping("/last")
+	public ResponseEntity<Order> getLastOrderByController(){
+		return ResponseEntity.ok(or.getLastOrderByService());
+	}
 }

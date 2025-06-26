@@ -41,4 +41,9 @@ public class ShippingService {
 		
 		sr.deleteById(id);
 	}
+	
+	// this is the method to find the data from the database
+	public Shipping getLastShippingByService() {
+		return sr.findLastShipping();
+	}
 }

@@ -52,4 +52,9 @@ public class ShippingController {
 		sr.deleteShipping(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
+	// this is the method to find the last data from the database
+	@GetMapping("/last")
+	public ResponseEntity<Shipping> getLastShippingByController(){
+		return ResponseEntity.ok(sr.getLastShippingByService());
+	}
 }

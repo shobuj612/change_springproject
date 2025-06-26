@@ -46,6 +46,9 @@ public class QcService {
 		
 		qr.deleteById(id);
 	}
-
+   // this is the method to find the last data from the database
+	public QC getLastQcByService() {
+		return qr.findLastQc();
+	}
 
 }

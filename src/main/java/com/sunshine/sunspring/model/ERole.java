@@ -9,5 +9,7 @@ public enum ERole {
     ROLE_FINISHING,
     ROLE_QC,
     ROLE_WAREHOUSE,
-    ROLE_SHIPPING
+    ROLE_SHIPPING,
+    ROLE_ADMIN,
+    ROLE_HR
 }

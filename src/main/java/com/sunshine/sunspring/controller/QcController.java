@@ -63,5 +63,10 @@ public class QcController {
 		return  new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		
 	}
+	//this is the method to find the last data from the database
+	@GetMapping("/last")
+	public ResponseEntity<QC> getLastQcByController(){
+		return ResponseEntity.ok(qr.getLastQcByService());
+	}
 
 }

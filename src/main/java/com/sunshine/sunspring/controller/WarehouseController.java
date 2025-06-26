@@ -28,7 +28,7 @@ public class WarehouseController {
 		List<Warehouse> war=wr.getAllWarehouse();
 	  return ResponseEntity.status(HttpStatus.OK).body(war);
 	}
-	// this is the method to upadate data in the database
+	// this is the method to update data in the database
 	@PutMapping("/{id}")
 	public ResponseEntity<Warehouse> updateWarehouse(@PathVariable Long id , @RequestBody Warehouse ware) {
 		Warehouse war=wr.updateWarehouse(id, ware);
@@ -48,5 +48,10 @@ public class WarehouseController {
 	public ResponseEntity<Void> deleteWarehouse(@PathVariable Long id) {
 		wr.deleteWarehouse(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+	}
+	// this is the method to find the last data from the database
+	@GetMapping("/last")
+	public ResponseEntity<Warehouse> getLastWarehouseByController(){
+		return ResponseEntity.ok(wr.getLastWarehouseByService());
 	}
 }

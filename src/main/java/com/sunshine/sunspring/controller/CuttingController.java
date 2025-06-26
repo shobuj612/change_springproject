@@ -65,5 +65,10 @@ public class CuttingController {
 		return ResponseEntity.noContent().build();
 		
 	}
+	// this is the method to find the last datafrom the database
+	@GetMapping("/last")
+	public ResponseEntity<Cutting> getLastCuttingByController(){
+		return ResponseEntity.ok(cr.getLastCuttingByService());
+	}
 	
       }

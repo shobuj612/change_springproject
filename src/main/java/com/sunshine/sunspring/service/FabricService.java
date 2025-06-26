@@ -43,6 +43,9 @@ public class FabricService {
 		fr.deleteById(id);
 	}
 	
-	
+	// this is the method to find the last fabric
+	public FabricInfo getLastFabricByService() {
+		return fr.findLastFabric();
+	}
 
 }

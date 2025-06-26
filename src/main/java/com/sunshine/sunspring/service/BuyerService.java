@@ -37,5 +37,9 @@ public class BuyerService {
 	    public void deleteBuyer(Long id) {
 	        br.deleteById(id);
 	    }
-
+     // find the last Buyer information
+	    
+	    public Buyer getLastBuyerByService() {
+	    	return br.findTopByOrderByBuyerIdDesc();
+	    }
 }
